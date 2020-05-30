@@ -1,7 +1,4 @@
 import React from 'react';
-// import styles from './Counter.module.scss';
-// import './Counter.scss';
-// import classNames from 'classnames';
 
 import { createUseStyles } from 'react-jss';
 
@@ -19,15 +16,11 @@ const useStyles = createUseStyles({
     backgroundColor: 'gray',
   },
 });
-// console.log(styles);
 
 const Counter = ({ title }) => {
   const value = 0;
 
   const styles = useStyles();
-  // const disabledButton = classNames(styles.button, {
-  //   [styles.disabled]: value > 0,
-  // });
 
   return (
     <div className="counter">

@@ -1,0 +1,27 @@
+@value font-stack: Roboto, Arial, sans-serif;
+@value font-size from './variables.module.scss';
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  width: 50px;
+}
+
+.disabled {
+  background-color: gray;
+}
+
+.value {
+  font-family: font-stack;
+  font-size: font-size;
+  padding: 10px 10px;
+  background-color: red;
+  color: white;
+}
+
+.value {
+  background-color: green;
+  color: white;
+}
