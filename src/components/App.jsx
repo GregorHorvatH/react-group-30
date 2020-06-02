@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+// import Counters from './Counters';
+import TaskManager from './TaskManager';
 
-const App = () => <h1>App</h1>;
+const App = () => (
+  <Fragment>
+    <h1>Lesson 03 - State</h1>
+    {/* <Counters /> */}
+    <TaskManager />
+  </Fragment>
+);
 
 export default App;
