@@ -4,6 +4,7 @@ const TaskEditor = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // так НЕ ДЕЛАТЬ НИКОГДА!!!
     onAdd(e.target.elements.text.value);
     e.target.elements.text.value = '';
   };
