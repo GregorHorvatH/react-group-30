@@ -1,0 +1,27 @@
+.taskItem {
+  border: 1px solid black;
+  margin-bottom: 10px;
+
+  .indicator {
+    border: 1px solid black;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .normal {
+    background-color: yellow;
+  }
+
+  .medium {
+    background-color: orange;
+  }
+
+  .urgent {
+    background-color: red;
+  }
+}
+
+.done {
+  background-color: greenyellow;
+}

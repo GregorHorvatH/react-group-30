@@ -4,7 +4,7 @@ import TaskManager from './TaskManager';
 
 const App = () => (
   <Fragment>
-    <h1>Lesson 03 - State</h1>
+    <h1>Lesson 04 - Forms</h1>
     {/* <Counters /> */}
     <TaskManager />
   </Fragment>
