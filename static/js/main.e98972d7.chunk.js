@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-group-30"]=this["webpackJsonpreact-group-30"]||[]).push([[0],{3:function(e,t,n){e.exports=n(8)},8:function(e,t,n){"use strict";n.r(t);var r=n(0),c=n.n(r),o=n(2),u=function(){return c.a.createElement("h1",null,"App")};n.n(o).a.render(c.a.createElement(u,null),document.getElementById("root"))}},[[3,1,2]]]);
+//# sourceMappingURL=main.e98972d7.chunk.js.map
