@@ -41,7 +41,7 @@ class TaskManager extends Component {
           },
         ],
       }),
-      this.saveData,
+      this.saveData, // это можно и нужно вынести в componentDidUpdate
     );
   };
 
@@ -50,7 +50,7 @@ class TaskManager extends Component {
       ({ tasks }) => ({
         tasks: tasks.filter((task) => task.id !== id),
       }),
-      this.saveData,
+      this.saveData, // это можно и нужно вынести в componentDidUpdate
     );
   };
 
@@ -70,7 +70,7 @@ class TaskManager extends Component {
           return task;
         }),
       }),
-      this.saveData,
+      this.saveData, // это можно и нужно вынести в componentDidUpdate
     );
   };
 
