@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import TaskManager from './TaskManager';
 
 class App extends Component {
   render() {
     return (
       <>
-        <h1>App</h1>
+        <h1>Lesson 05</h1>
+        <TaskManager />
       </>
     );
   }
