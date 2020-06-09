@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 const BuggyComponent = () => {
   const [value, setValue] = useState(0);
 
+  if (value > 3) {
+    throw new Error('My Custom Error Message!');
+  }
+
   return (
     <div>
       <p>

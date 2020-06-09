@@ -29,49 +29,40 @@ class TaskManager extends Component {
       return;
     }
 
-    this.setState(
-      ({ tasks }) => ({
-        tasks: [
-          ...tasks,
-          {
-            id: getId(),
-            isDone: false,
-            text,
-            urgency,
-          },
-        ],
-      }),
-      this.saveData, // это можно и нужно вынести в componentDidUpdate
-    );
+    this.setState(({ tasks }) => ({
+      tasks: [
+        ...tasks,
+        {
+          id: getId(),
+          isDone: false,
+          text,
+          urgency,
+        },
+      ],
+    }));
   };
 
   handleDeleteTask = (id) => {
-    this.setState(
-      ({ tasks }) => ({
-        tasks: tasks.filter((task) => task.id !== id),
-      }),
-      this.saveData, // это можно и нужно вынести в componentDidUpdate
-    );
+    this.setState(({ tasks }) => ({
+      tasks: tasks.filter((task) => task.id !== id),
+    }));
   };
 
   handleStatusChange = (id) => {
     console.log('handleStatusChange:', id);
 
-    this.setState(
-      ({ tasks }) => ({
-        tasks: tasks.map((task) => {
-          if (task.id === id) {
-            return {
-              ...task,
-              isDone: !task.isDone,
-            };
-          }
+    this.setState(({ tasks }) => ({
+      tasks: tasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            isDone: !task.isDone,
+          };
+        }
 
-          return task;
-        }),
+        return task;
       }),
-      this.saveData, // это можно и нужно вынести в componentDidUpdate
-    );
+    }));
   };
 
   handleFilterChange = ({ isDone, filterText }) => {
@@ -97,6 +88,10 @@ class TaskManager extends Component {
 
   componentDidMount() {
     this.loadData();
+  }
+
+  componentDidUpdate() {
+    this.saveData();
   }
 
   render() {
