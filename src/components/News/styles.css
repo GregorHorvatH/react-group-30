@@ -1,0 +1,13 @@
+.pagination {
+  display: flex;
+  list-style: none;
+}
+
+.pagination li {
+  margin: 5px;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}
