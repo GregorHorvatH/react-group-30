@@ -43,7 +43,13 @@ class App extends Component {
         {showTimer && <Timer />} */}
 
         {/* <BuggyComponent /> */}
-        <DataExchange />
+        {/* <DataExchange /> */}
+
+        <ul>
+          <li>Home page</li>
+          <li>page 2</li>
+          <li>About</li>
+        </ul>
       </ErrorBoundary>
     );
   }
