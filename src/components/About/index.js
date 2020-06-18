@@ -1,7 +1,7 @@
 import React from 'react';
 
 const About = () => {
-  // throw new Error('My error');
+  throw new Error('My error');
 
   return (
     <div className="about">

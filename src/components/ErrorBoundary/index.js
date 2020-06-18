@@ -3,12 +3,16 @@ import React from 'react';
 import ErrorPage from '../ErrorPage';
 
 class ErrorBoundary extends React.Component {
-  componentDidCatch(error, info) {
-    this.props.setError(error.message);
+  state = {
+    error: '',
+  };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
   }
 
   render() {
-    return this.props.error ? <ErrorPage /> : this.props.children;
+    return this.state.hasError ? <ErrorPage /> : this.props.children;
   }
 }
 
