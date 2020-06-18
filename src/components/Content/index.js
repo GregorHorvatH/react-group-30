@@ -1,25 +1,32 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { Suspense, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import Home from '../Home';
-import Users from '../Users';
-import UserDetails from '../UserDetails';
-import HomeWorks from '../HomeWorks';
-import About from '../About';
+import ErrorBoundary from '../ErrorBoundary';
 
-import { routes } from '../../routes';
+import routes from '../routes';
 
-const Content = () => (
-  <div className="body">
-    <h1>Lesson 07 - Code Splitting</h1>
-    <Switch>
-      <Route path={routes.HOME} exact component={Home} />
-      <Route path={routes.USER_DETAILS} component={UserDetails} />
-      <Route path={routes.USERS} component={Users} />
-      <Route path={routes.HOME_WORKS} component={HomeWorks} />
-      <Route path={routes.ABOUT} component={About} />
-    </Switch>
-  </div>
-);
+const Content = () => {
+  const [error, setError] = useState('');
+
+  return (
+    <div className="body">
+      <h1>Lesson 07 - Code Splitting</h1>
+      <Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          {routes.map(({ name, path, component: RouteComponent, isExact }) => (
+            <ErrorBoundary error={error} setError={setError}>
+              <Route
+                key={name}
+                path={path}
+                component={RouteComponent}
+                exact={isExact}
+              />
+            </ErrorBoundary>
+          ))}
+        </Suspense>
+      </Switch>
+    </div>
+  );
+};
 
 export default Content;

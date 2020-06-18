@@ -5,7 +5,7 @@ import qs from 'query-string';
 // import UserDetails from '../UserDetails';
 // import { routes } from '../../routes';
 
-import './User.styles.scss';
+import './Users.styles.scss';
 
 class Users extends Component {
   state = {
@@ -36,6 +36,7 @@ class Users extends Component {
         <label>
           <span>User name</span>
           <input
+            className="input"
             type="text"
             value={filter}
             onChange={(e) => {
@@ -65,7 +66,13 @@ class Users extends Component {
                   name.toLowerCase().includes(filter.toLowerCase()),
                 )
                 .map(({ id, name }) => (
-                  <Link to={`${url}/${id}`} key={id}>
+                  <Link
+                    to={{
+                      pathname: `${url}/${id}`,
+                      state: { filter },
+                    }}
+                    key={id}
+                  >
                     {name}
                   </Link>
                 ))}

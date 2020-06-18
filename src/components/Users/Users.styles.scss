@@ -1,0 +1,14 @@
+.users {
+  .input {
+    margin-left: 5px;
+  }
+
+  .user-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .users-wrapper {
+    display: flex;
+  }
+}
