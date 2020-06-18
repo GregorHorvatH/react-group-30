@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import qs from 'query-string';
 
-import UserDetails from '../UserDetails';
-
-import { routes } from '../../routes';
+// import UserDetails from '../UserDetails';
+// import { routes } from '../../routes';
 
 import './User.styles.scss';
 
@@ -72,9 +71,9 @@ class Users extends Component {
                 ))}
             </div>
           </div>
-          <div>
+          {/* <div>
             <Route path={routes.USER_DETAILS} component={UserDetails} />
-          </div>
+          </div> */}
         </div>
       </div>
     );
