@@ -7,16 +7,17 @@ import './styles.scss';
 
 const options = [5, 10, 15, 50];
 
-const Counter = ({ value, step, onDecrement, onIncrement, setStep }) => {
+const Counter = ({ id, value, step, onDecrement, onIncrement, setStep }) => {
   return (
     <div className="counter">
+      <button>x</button>
       <h2 className="title">Counter</h2>
       <div className="controls">
-        <button className="button" onClick={() => onDecrement(step)}>
+        <button className="button" onClick={() => onDecrement({ id, step })}>
           -
         </button>
         <p className="value">{value}</p>
-        <button className="button" onClick={() => onIncrement(step)}>
+        <button className="button" onClick={() => onIncrement({ id, step })}>
           +
         </button>
       </div>
@@ -24,7 +25,7 @@ const Counter = ({ value, step, onDecrement, onIncrement, setStep }) => {
       <select
         className="step"
         value={step}
-        onChange={(e) => setStep(Number(e.target.value))}
+        onChange={(e) => setStep({ id, step: Number(e.target.value) })}
       >
         {options.map((item) => (
           <option key={item} value={item}>
@@ -36,9 +37,8 @@ const Counter = ({ value, step, onDecrement, onIncrement, setStep }) => {
   );
 };
 
-const mapStateToProps = ({ counter: { value, step } }) => ({
-  value,
-  step,
+const mapStateToProps = ({ counter: { items } }, { id }) => ({
+  ...items.find((item) => item.id === id),
 });
 
 const mapDispatchToProps = (dispatch) =>

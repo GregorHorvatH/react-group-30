@@ -1,57 +1,69 @@
-// import { combineReducers } from 'redux';
-// import types from './counterTypes';
-
-import { createReducer, combineReducers } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './counterActions';
 
 const initialState = {
-  value: 0,
-  step: 1,
+  items: [
+    {
+      id: 1,
+      value: 0,
+      step: 1,
+    },
+    {
+      id: 2,
+      value: 0,
+      step: 1,
+    },
+  ],
+  errorMessage: '',
 };
 
-// const valueReducer = (state = initialState.value, { type, payload: step }) => {
-//   switch (type) {
-//     case types.INCREMENT:
-//       return state + step;
+const increment = (state, { payload: { id, step } }) => ({
+  ...state,
+  items: state.items.map((item) =>
+    item.id !== id
+      ? item
+      : {
+          ...item,
+          value: item.value + step,
+        },
+  ),
+});
+const decrement = (state, { payload: { id, step } }) => ({
+  ...state,
+  items: state.items.map((item) =>
+    item.id !== id
+      ? item
+      : {
+          ...item,
+          value: item.value - step,
+        },
+  ),
+});
+const setStep = (state, { payload: { id, step } }) => ({
+  ...state,
+  items: state.items.map((item) =>
+    item.id !== id
+      ? item
+      : {
+          ...item,
+          step,
+        },
+  ),
+});
 
-//     case types.DECREMENT:
-//       return state - step;
+const addCounter = (state, { payload: item }) => {
+  const hasItem = state.items.find(({ id }) => id === item.id);
 
-//     default:
-//       return state;
-//   }
-// };
+  return {
+    ...state,
+    items: hasItem ? state.items : [...state.items, item],
+    errorMessage: hasItem ? 'Item is exists' : '',
+  };
+};
 
-// const stepReducer = (state = initialState.step, { type, payload: step }) => {
-//   switch (type) {
-//     case types.SET_STEP:
-//       return step;
-
-//     default:
-//       return state;
-//   }
-// };
-
-// const counterReducer = combineReducers({
-//   value,
-//   step,
-// });
-
-const increment = (state, { payload: step }) => state + step;
-const decrement = (state, { payload: step }) => state - step;
-const setStep = (_, { payload: step }) => step;
-
-const value = createReducer(initialState.value, {
+export default createReducer(initialState, {
   [actions.increment.type]: increment,
   [actions.decrement.type]: decrement,
-  [actions.setStep.type]: () => 0,
-});
-
-const step = createReducer(initialState.step, {
   [actions.setStep.type]: setStep,
-});
-
-export default combineReducers({
-  value,
-  step,
+  [actions.addCounter.type]: addCounter,
 });

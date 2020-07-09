@@ -1,34 +1,58 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
+import { addCounter } from '../../redux/counterActions';
 
 import Counter from '../Counter';
 import Todos from '../Todos';
 import Status from '../Status';
 
-import store from '../../redux/store';
-
 import './styles.scss';
 
 class App extends Component {
+  state = {
+    errorMessage: '',
+  };
+
+  hancdleAddCounter = () => {
+    if (this.props.items.find((item) => item.id === 3)) {
+      this.setState({
+        errorMessage: 'UPS!',
+      });
+
+      return;
+    }
+
+    this.props.addCounter({
+      id: 3,
+      value: 10,
+      step: 15,
+    });
+  };
+
   render() {
     return (
-      <Provider store={store}>
-        <div className="app">
-          <h1 className="title">Lesson 12 - Redux Toolkit</h1>
+      <div className="app">
+        <h1 className="title">Lesson 12 - Redux Toolkit</h1>
 
-          <div className="content">
-            <div className="widgets">
-              <Counter />
-              <Counter />
+        <div className="content">
+          <div className="widgets">
+            <button onClick={this.hancdleAddCounter}>+</button>
+            {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
 
-              <Todos />
-            </div>
-            <Status />
+            {this.props.items.map(({ id }) => (
+              <Counter key={id} id={id} />
+            ))}
+            <Todos />
           </div>
+          <Status />
         </div>
-      </Provider>
+      </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ counter: { items } }) => ({
+  items,
+});
+
+export default connect(mapStateToProps, { addCounter })(App);
