@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "json-server --watch server/db.json --port 3030 --delay 1000",
+    "server": "json-server --watch server/db.json --port 3030 --delay 50",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

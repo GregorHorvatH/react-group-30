@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import Layout from './Layout';
 import InputForm from './InputForm';
 import Filters from './Filters';
-import TodoList from './TodoList';
-import TodoListDone from './TodoListDone';
+import ErrorMessage from './ErrorMessage';
+import TodoListDone from './TodoList/TodoListDoneContainer';
+import TodoListNotDone from './TodoList/TodoListNotDoneContainer';
 import Loader from './Loader';
 
 import { getTodos, fetchSettings } from '../../redux/todosAPI';
@@ -21,9 +22,10 @@ const Todos = ({ fetchTodos, fetchSettings }) => {
     <Layout>
       <InputForm />
       <Filters />
+      <ErrorMessage />
       <Loader />
-      <TodoList />
-      <TodoListDone />
+      <TodoListNotDone name="not done" />
+      <TodoListDone name="done" />
     </Layout>
   );
 };

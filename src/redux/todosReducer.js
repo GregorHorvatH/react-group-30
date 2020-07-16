@@ -26,10 +26,6 @@ const items = createReducer(initialState.items, {
     [...items].sort((a, b) => b.id - a.id),
 });
 
-// const sortedTodos = [...items].sort((a, b) =>
-//   filter === 'asc' ? a.id - b.id : b.id - a.id,
-// );
-
 const filter = createReducer(initialState.filter, {
   [actions.setAscFilter.type]: () => 'asc',
   [actions.setDescFilter.type]: () => 'desc',

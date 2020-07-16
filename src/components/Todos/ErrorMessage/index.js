@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { cleanTodoError } from '../../../redux/todosActions';
 
 const ErrorMessage = ({ errorMessage, cleanTodoError }) =>

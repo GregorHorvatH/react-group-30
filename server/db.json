@@ -1,19 +1,22 @@
 {
   "todos": [
     {
-      "color": "#DDD1C7",
-      "text": "item 1",
-      "id": 6
+      "color": "#8DB580",
+      "text": "item 2",
+      "id": 7,
+      "isDone": false
     },
     {
       "color": "#8DB580",
-      "text": "item 2",
-      "id": 7
+      "text": "sgrsg",
+      "id": 9,
+      "isDone": true
     },
     {
       "color": "#C2CFB2",
-      "text": "item 3",
-      "id": 8
+      "text": "item 5",
+      "id": 10,
+      "isDone": true
     }
   ],
   "settings": {

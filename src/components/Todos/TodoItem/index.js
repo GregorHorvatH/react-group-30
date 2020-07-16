@@ -6,11 +6,13 @@ import './styles.scss';
 class TodoItem extends Component {
   render() {
     const { todo, onDelete, onCheck } = this.props;
-    const { color, text, isDone = false } = todo;
+    const { color, text, isDone = false, count } = todo;
 
     return (
       <li className="todo-item" style={{ backgroundColor: color }}>
-        <span>{text}</span>
+        <span>
+          {count} - {text}
+        </span>
         <div className="controls">
           <input
             type="checkbox"
