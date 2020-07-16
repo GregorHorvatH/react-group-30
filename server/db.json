@@ -3,31 +3,17 @@
     {
       "color": "#DDD1C7",
       "text": "item 1",
-      "id": 1,
-      "isDone": false
-    },
-    {
-      "color": "#C2CFB2",
-      "text": "item 2",
-      "id": 2,
-      "isDone": false
-    },
-    {
-      "color": "#DDD1C7",
-      "text": "item 3",
-      "id": 3
+      "id": 6
     },
     {
       "color": "#8DB580",
-      "text": "item 4",
-      "id": 4,
-      "isDone": true
+      "text": "item 2",
+      "id": 7
     },
     {
       "color": "#C2CFB2",
-      "text": "sdf",
-      "id": 5,
-      "isDone": true
+      "text": "item 3",
+      "id": 8
     }
   ],
   "settings": {

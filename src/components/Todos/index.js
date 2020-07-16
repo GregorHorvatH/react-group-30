@@ -4,7 +4,8 @@ import Layout from './Layout';
 import InputForm from './InputForm';
 import Filters from './Filters';
 import TodoList from './TodoList';
-// import TodoListDone from './TodoListDone';
+import TodoListDone from './TodoListDone';
+import Loader from './Loader';
 
 import { getTodos, fetchSettings } from '../../redux/todosAPI';
 
@@ -20,8 +21,9 @@ const Todos = ({ fetchTodos, fetchSettings }) => {
     <Layout>
       <InputForm />
       <Filters />
+      <Loader />
       <TodoList />
-      {/* <TodoListDone /> */}
+      <TodoListDone />
     </Layout>
   );
 };

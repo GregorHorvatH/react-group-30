@@ -2,48 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TodoItem from '../TodoItem';
 
-import { cleanTodoError } from '../../../redux/todosActions';
-
 import './styles.scss';
 
-const TodoListDone = ({
-  filter,
-  isLoading,
-  items,
-  errorMessage,
-  cleanTodoError,
-}) => {
+const TodoListDone = ({ items }) => {
   console.log('render todo list isDone');
 
-  return isLoading ? (
-    <h3>Loading...</h3>
-  ) : (
-    <>
-      {!!errorMessage && (
-        <>
-          <button onClick={cleanTodoError}>x</button>
-          <h3>{errorMessage}</h3>
-        </>
-      )}
-
-      <ul className="todo-list">
-        {items.map((todo) => (
-          <TodoItem key={todo.id} id={todo.id} />
-        ))}
-      </ul>
-    </>
+  return (
+    <ul className="todo-list">
+      {items.map((todo) => (
+        <TodoItem key={todo.id} id={todo.id} />
+      ))}
+    </ul>
   );
 };
 
-const mapStateToProps = (state) => {
-  const { filter, items, isLoading, errorMessage } = state.todos;
+const mapStateToProps = (state) => ({
+  items: state.todos.items.filter((item) => item.isDone),
+});
 
-  return {
-    filter,
-    isLoading,
-    items: items.filter((item) => item.isDone),
-    errorMessage,
-  };
-};
-
-export default connect(mapStateToProps, { cleanTodoError })(TodoListDone);
+export default connect(mapStateToProps)(TodoListDone);
