@@ -1,32 +1,12 @@
 import React, { useState } from 'react';
-import { uuid } from 'uuidv4';
 import TodoList from './TodoList';
+import InputForm from './InputForm';
 
 const App = () => {
   const [todos, setTodos] = useState([
     { id: 1, title: 'First todo', completed: false },
     { id: 2, title: 'Second todo', completed: true },
   ]);
-
-  const [text, setText] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setTodos([
-      ...todos,
-      {
-        id: uuid(),
-        title: text,
-        completed: false,
-      },
-    ]);
-    setText('');
-  };
-
-  const handleTextInput = (e) => {
-    setText(e.target.value);
-  };
 
   const handleToggleTodo = (id) => {
     setTodos(
@@ -45,14 +25,13 @@ const App = () => {
     setTodos(todos.filter((item) => item.id !== id));
   };
 
+  const handleAddTodo = (todo) => setTodos([...todos, todo]);
+
   return (
     <div className="container">
       <h1>Todo app</h1>
 
-      <form className="input-field" onSubmit={handleSubmit}>
-        <input type="text" value={text} onChange={handleTextInput} />
-        <label>Todo name</label>
-      </form>
+      <InputForm onSubmit={handleAddTodo} />
 
       <TodoList
         todos={todos}
