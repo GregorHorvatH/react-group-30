@@ -3,6 +3,9 @@ export default function (state, action) {
     case 'ADD_TODO':
       return [...state, action.payload];
 
+    case 'DELETE_TODO':
+      return state.filter((item) => item.id !== action.payload);
+
     case 'TOGGLE_TODO':
       return state.map((item) =>
         item.id === action.payload
@@ -12,9 +15,6 @@ export default function (state, action) {
             }
           : item,
       );
-
-    case 'DELETE_TODO':
-      return state.filter((item) => item.id !== action.payload);
 
     default:
       return state;

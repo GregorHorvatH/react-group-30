@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { uuid } from 'uuidv4';
 
-const InputForm = ({ todos, onSubmit }) => {
+import Context from './context';
+
+const InputForm = () => {
+  const { dispatch } = useContext(Context);
   const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit({
-      id: uuid(),
-      title: text,
-      completed: false,
+    dispatch({
+      type: 'ADD_TODO',
+      payload: {
+        id: uuid(),
+        title: text,
+        completed: false,
+      },
     });
+
     setText('');
   };
 
