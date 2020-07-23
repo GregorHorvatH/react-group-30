@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
-const setHeaders = (token) => {
+const setToken = (token) => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
@@ -14,9 +14,9 @@ export const logIn = (credentionals) => (dispatch) => {
     .post('/users/login', credentionals)
     .then(({ data }) => {
       dispatch(actions.logInSuccess(data));
-      setHeaders(data.token);
+      setToken(data.token);
     })
-    .catch((error) => dispatch(actions.logInFailure(error)));
+    .catch((error) => dispatch(actions.logInFailure(error.message)));
 };
 
 export const signUp = (credentionals) => (dispatch) => {
@@ -26,7 +26,7 @@ export const signUp = (credentionals) => (dispatch) => {
     .post('/users/signup', credentionals)
     .then(({ data }) => {
       dispatch(actions.signUpSuccess(data));
-      setHeaders(data.token);
+      setToken(data.token);
     })
     .catch((error) => dispatch(actions.signUpFailure(error.message)));
 };
@@ -35,9 +35,27 @@ export const logOut = () => (dispatch) => {
   axios
     .post('/users/logout')
     .then(({ data }) => dispatch(actions.logOutSuccess(data)))
-    .catch((error) => dispatch(actions.logOutFailure(error)));
+    .catch((error) => dispatch(actions.logOutFailure(error.message)));
 };
 
 export const getContacts = () => () => {
   axios.get('/contacts').then(console.log).catch(console.log);
+};
+
+export const getCurrentUser = () => (dispatch, getState) => {
+  const {
+    session: { token },
+  } = getState();
+
+  if (!token) {
+    return;
+  }
+
+  setToken(token);
+  dispatch(actions.getCurrentUserRequest());
+
+  axios
+    .get('/users/current')
+    .then(({ data }) => dispatch(actions.getCurrentUserSuccess(data)))
+    .catch((error) => dispatch(actions.getCurrentUserFailure(error.message)));
 };

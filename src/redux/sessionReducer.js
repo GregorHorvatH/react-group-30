@@ -12,6 +12,7 @@ const initialState = {
 const isAuthorized = createReducer(initialState.isAuthorized, {
   [actions.logInSuccess.type]: () => true,
   [actions.signUpSuccess.type]: () => true,
+  [actions.getCurrentUserSuccess.type]: () => true,
 
   [actions.logInRequest.type]: () => false,
   [actions.logOutSuccess.type]: () => false,
@@ -19,8 +20,11 @@ const isAuthorized = createReducer(initialState.isAuthorized, {
 });
 
 // ===== error =====
+const setError = (_, { payload: message }) => message;
+
 const error = createReducer(initialState.error, {
-  [actions.signUpFailure.type]: (_, { payload: message }) => message,
+  [actions.signUpFailure.type]: setError,
+  [actions.getCurrentUserFailure.type]: setError,
 
   [actions.logInRequest.type]: () => null,
   [actions.signUpRequest.type]: () => null,
@@ -49,6 +53,7 @@ const setUser = (_, { payload: { user } }) => user;
 const user = createReducer(initialState.user, {
   [actions.logInSuccess.type]: setUser,
   [actions.signUpSuccess.type]: setUser,
+  [actions.getCurrentUserSuccess.type]: (_, { payload: user }) => user,
 
   [actions.logInRequest.type]: () => null,
   [actions.logOutSuccess.type]: () => null,

@@ -1,25 +1,26 @@
 // core
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import Content from './Content';
-
-// store
-import store from '../redux/store';
+import { getCurrentUser } from '../redux/sessionOperations';
 
 // styles
 import './App.styles.scss';
 
-const App = () => (
-  <div className="app">
-    <BrowserRouter>
-      <Provider store={store}>
-        <Navbar />
-        <Content />
-      </Provider>
-    </BrowserRouter>
-  </div>
-);
+const App = ({ getCurrentUser }) => {
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
 
-export default App;
+  return (
+    <div className="app">
+      <Navbar />
+      <Content />
+    </div>
+  );
+};
+
+const mapDispatchToProps = { getCurrentUser };
+
+export default connect(null, mapDispatchToProps)(App);
