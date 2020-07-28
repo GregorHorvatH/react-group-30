@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import Counter from '../Counter';
-import Todos from '../Todos';
-import Status from '../Status';
+// import Counter from '../Counter';
+// import Todos from '../Todos';
+// import Status from '../Status';
+import MaterialComponent from '../MaterialComponent';
 
 import store from '../../redux/store';
 
@@ -14,17 +15,16 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="app">
-          <h1 className="title">Lesson 12 - Redux Toolkit</h1>
+          <h1 className="title">Lesson 17 - Questions & Answers</h1>
 
-          <div className="content">
+          <MaterialComponent />
+          {/* <div className="content">
             <div className="widgets">
               <Counter />
-              <Counter />
-
               <Todos />
             </div>
             <Status />
-          </div>
+          </div> */}
         </div>
       </Provider>
     );
